@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react';
 import { Star, MapPin, Clock, DollarSign, Plane, Train, Car } from 'lucide-react';
-
+import Image from 'next/image';
 // This would typically come from your API or CMS
 const destinationData = {
   id: 1,
@@ -44,16 +44,16 @@ const destinationData = {
     }
   ],
   images: [
-    "/api/placeholder/600/400",
-    "/api/placeholder/600/400",
-    "/api/placeholder/600/400",
-    "/api/placeholder/600/400",
-    "/api/placeholder/600/400",
-    "/api/placeholder/600/400"
+    "/images/states/goa.jpg",
+    "/images/states/beach.avif",
+    "/images/states/goa.jpg",
+    "/images/states/goa.jpg",
+    "/images/states/goa.jpg",
+    "/images/states/goa.jpg"
   ]
 };
 
-const TabPanel = ({ children, value, index }) => {
+const TabPanel = ({ children, value, index }: { children: React.ReactNode, value: number, index: number }) => {
   return value === index ? <div className="py-6">{children}</div> : null;
 };
 
@@ -64,10 +64,12 @@ export default function DestinationTemplate() {
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
       <div className="relative h-96">
-        <img
-          src="/api/placeholder/1920/1080"
+        <Image
+          src="/images/states/goa.jpg"
           alt={destinationData.name}
-          className="w-full h-full object-cover"
+          width={1920}
+          height={1080}
+          className="object-cover"
         />
         <div className="absolute inset-0 bg-black bg-opacity-40">
           <div className="container mx-auto px-4 h-full flex flex-col justify-end pb-8">
@@ -180,7 +182,7 @@ export default function DestinationTemplate() {
           <TabPanel value={activeTab} index={3}>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
               {destinationData.images.map((image, index) => (
-                <img
+                <Image    
                   key={index}
                   src={image}
                   alt={`${destinationData.name} ${index + 1}`}

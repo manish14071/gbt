@@ -18,11 +18,11 @@ const blogPosts = [
     id: 1,
     title: "A Journey Through the Valley of Flowers",
     excerpt: "Discover the breathtaking beauty of Uttarakhand's most famous national park...",
-    image: "/api/placeholder/800/400",
+    image: "/images/states/mysore.jpg",
     category: "Adventure",
     author: {
       name: "Arun Kumar",
-      avatar: "/api/placeholder/40/40"
+      //avatar: "/path/to/your/avatar1.jpg"
     },
     date: "2024-02-01",
     readTime: "5 min read"
@@ -31,11 +31,11 @@ const blogPosts = [
     id: 2,
     title: "Hidden Gems of Rajasthan",
     excerpt: "Beyond the palaces and forts lies a world of unexplored wonders...",
-    image: "/api/placeholder/800/400",
+    image: "/images/states/rajasthan.jpg",
     category: "Culture",
     author: {
       name: "Maya Patel",
-      avatar: "/api/placeholder/40/40"
+      //avatar: "/api/placeholder/40/40"
     },
     date: "2024-01-28",
     readTime: "7 min read"
@@ -44,11 +44,11 @@ const blogPosts = [
     id: 3,
     title: "Kerala's Backwater Adventures",
     excerpt: "Experience the serene life on traditional houseboats in God's own country...",
-    image: "/api/placeholder/800/400",
+    image: "/images/states/nagaland.jpg",
     category: "Travel Tips",
     author: {
       name: "Sarah Wilson",
-      avatar: "/api/placeholder/40/40"
+      //avatar: "/api/placeholder/40/40"
     },
     date: "2024-01-25",
     readTime: "6 min read"
@@ -72,79 +72,83 @@ export default function BlogSection() {
         </Box>
 
         <Grid container spacing={4}>
-          {blogPosts.map((post) => (
-            <Grid item xs={12} md={4} key={post.id}>
-              <Card 
-                sx={{ 
-                  height: '100%',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  transition: 'transform 0.3s',
-                  '&:hover': {
-                    transform: 'translateY(-8px)',
-                    boxShadow: 6
-                  }
-                }}
-              >
-                <CardMedia
-                  component="img"
-                  height="200"
-                  image={post.image}
-                  alt={post.title}
-                />
-                <CardContent sx={{ flexGrow: 1 }}>
-                  <Box sx={{ mb: 2 }}>
-                    <Chip 
-                      label={post.category}
-                      size="small"
-                      sx={{ 
-                        backgroundColor: '#1a237e',
-                        color: 'white',
-                        mr: 1
-                      }}
-                    />
-                    <Typography 
-                      variant="caption" 
-                      color="text.secondary"
-                      sx={{ display: 'inline-flex', alignItems: 'center' }}
-                    >
-                      <AccessTime sx={{ fontSize: 16, mr: 0.5 }} />
-                      {post.readTime}
-                    </Typography>
-                  </Box>
-                  
-                  <Typography
-                    gutterBottom
-                    variant="h5"
-                    component="h2"
-                    sx={{ fontWeight: 'bold' }}
-                  >
-                    {post.title}
-                  </Typography>
-                  
-                  <Typography variant="body2" color="text.secondary" paragraph>
-                    {post.excerpt}
-                  </Typography>
-
-                  <Box sx={{ display: 'flex', alignItems: 'center', mt: 2 }}>
-                    <Avatar src={post.author.avatar} sx={{ mr: 1 }} />
-                    <Box>
-                      <Typography variant="subtitle2">
-                        {post.author.name}
-                      </Typography>
-                      <Typography variant="caption" color="text.secondary">
-                        {new Date(post.date).toLocaleDateString('en-US', {
-                          month: 'long',
-                          day: 'numeric',
-                          year: 'numeric'
-                        })}
+          {blogPosts.map((post) => {
+            const formattedDate = new Date(post.date).toLocaleDateString('en-US', {
+              month: 'long',
+              day: 'numeric',
+              year: 'numeric'
+            });
+            return (
+              <Grid item xs={12} md={4} key={post.id}>
+                <Card 
+                  sx={{ 
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    transition: 'transform 0.3s',
+                    '&:hover': {
+                      transform: 'translateY(-8px)',
+                      boxShadow: 6
+                    }
+                  }}
+                >
+                  <CardMedia
+                    component="img"
+                    height="200"
+                    image={post.image}
+                    alt={post.title}
+                    width={800}
+                  />
+                  <CardContent sx={{ flexGrow: 1 }}>
+                    <Box sx={{ mb: 2 }}>
+                      <Chip 
+                        label={post.category}
+                        size="small"
+                        sx={{ 
+                          backgroundColor: '#1a237e',
+                          color: 'white',
+                          mr: 1
+                        }}
+                      />
+                      <Typography 
+                        variant="caption" 
+                        color="text.secondary"
+                        sx={{ display: 'inline-flex', alignItems: 'center' }}
+                      >
+                        <AccessTime sx={{ fontSize: 16, mr: 0.5 }} />
+                        {post.readTime}
                       </Typography>
                     </Box>
-                  </Box>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
+                    
+                    <Typography
+                      gutterBottom
+                      variant="h5"
+                      component="h2"
+                      sx={{ fontWeight: 'bold' }}
+                    >
+                      {post.title}
+                    </Typography>
+                    
+                    <Typography variant="body2" color="text.secondary" paragraph>
+                      {post.excerpt}
+                    </Typography>
+
+                    <Box sx={{ display: 'flex', alignItems: 'center', mt: 2 }}>
+                      <Avatar sx={{ mr: 1 }} />
+                      <Box>
+                        <Typography variant="subtitle2">
+                          {post.author.name}
+                        </Typography>
+                        <Typography variant="caption" color="text.secondary">
+                          {formattedDate}
+                        </Typography>
+                      </Box>
+                    </Box>
+                  </CardContent>
+                </Card>
+              </Grid>
+            );
+          })}
         </Grid>
 
         <Box sx={{ textAlign: 'center', mt: 6 }}>

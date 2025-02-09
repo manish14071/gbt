@@ -8,51 +8,51 @@ const galleryImages = [
     id: 1,
     title: 'Taj Mahal at Sunrise',
     location: 'Agra, UP',
-    image: '/api/placeholder/800/600',
+    image: '/images/states/TajMahal.jpg',
     category: 'Monuments'
   },
   {
     id: 2,
     title: 'Varanasi Ghats',
     location: 'Varanasi, UP',
-    image: '/api/placeholder/800/600',
+    image: '/images/states/Megah.jpg',
     category: 'Culture'
   },
   {
     id: 3,
     title: 'Kerala Backwaters',
     location: 'Kerala',
-    image: '/api/placeholder/800/600',
+    image: '/images/states/state.jpg',
     category: 'Nature'
   },
   {
     id: 4,
     title: 'Ladakh Monastery',
     location: 'Ladakh',
-    image: '/api/placeholder/800/600',
+    image: '/images/states/j&k.jpg',
     category: 'Culture'
   },
   {
     id: 5,
     title: 'Jaisalmer Desert',
     location: 'Rajasthan',
-    image: '/api/placeholder/800/600',
+    image: '/images/states/rajasthan.jpg',
     category: 'Nature'
   },
   {
     id: 6,
     title: 'Hampi Ruins',
     location: 'Karnataka',
-    image: '/api/placeholder/800/600',
+    image: '/images/states/nagaland.jpg',
     category: 'Monuments'
   }
 ];
 
 export default function PhotoGallery() {
   const [open, setOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState<{ id: number; title: string; location: string; image: string; category: string } | null>(null);
 
-  const handleOpen = (image) => {
+  const handleOpen = (image: { id: number; title: string; location: string; image: string; category: string }) => {
     setSelectedImage(image);
     setOpen(true);
   };
@@ -63,13 +63,13 @@ export default function PhotoGallery() {
   };
 
   const handleNext = () => {
-    const currentIndex = galleryImages.findIndex(img => img.id === selectedImage.id);
+    const currentIndex = galleryImages.findIndex(img => img.id === selectedImage?.id);
     const nextIndex = (currentIndex + 1) % galleryImages.length;
     setSelectedImage(galleryImages[nextIndex]);
   };
 
   const handlePrev = () => {
-    const currentIndex = galleryImages.findIndex(img => img.id === selectedImage.id);
+    const currentIndex = galleryImages.findIndex(img => img.id === selectedImage?.id);
     const prevIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
     setSelectedImage(galleryImages[prevIndex]);
   };
@@ -109,6 +109,8 @@ export default function PhotoGallery() {
                     objectFit: 'cover',
                     transition: 'transform 0.3s ease-in-out'
                   }}
+                  width={800}
+                  height={600}
                 />
                 <Box
                   className="overlay"

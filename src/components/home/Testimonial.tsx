@@ -21,7 +21,7 @@ const testimonials = [
     location: "Mumbai",
     rating: 5,
     comment: "Our trip to Himachal Pradesh was absolutely magical! The tour guides were knowledgeable and the itinerary was perfectly planned.",
-    image: "/api/placeholder/64/64"
+    image: "/images/states/mysore.jpg"
   },
   {
     id: 2,
@@ -29,7 +29,7 @@ const testimonials = [
     location: "Delhi",
     rating: 5,
     comment: "Exploring the backwaters of Kerala was a dream come true. The houseboat experience was unforgettable!",
-    image: "/api/placeholder/64/64"
+    image: "/images/states/delhi.jpg"
   },
   {
     id: 3,
@@ -37,7 +37,7 @@ const testimonials = [
     location: "London",
     rating: 5,
     comment: "The Golden Triangle tour exceeded all expectations. From the Taj Mahal to the pink city of Jaipur, every moment was special.",
-    image: "/api/placeholder/64/64"
+    image: "/images/states/rajasthan.jpg"
   }
 ];
 

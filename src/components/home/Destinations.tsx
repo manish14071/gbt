@@ -7,42 +7,42 @@ const indianDestinations = [
     id: 1,
     title: 'Goa',
     description: 'Sun-kissed beaches and vibrant nightlife',
-    image: '/api/placeholder/400/300',
+    image: '/images/states/goa.jpg',
     highlights: ['Calangute Beach', 'Old Goa Churches', 'Spice Plantations']
   },
   {
     id: 2,
     title: 'Jammu & Kashmir',
     description: 'Paradise on Earth with stunning valleys',
-    image: '/api/placeholder/400/300',
+    image: '/images/states/j&k.jpg',
     highlights: ['Dal Lake', 'Gulmarg', 'Pahalgam']
   },
   {
     id: 3,
     title: 'Himachal Pradesh',
     description: 'Adventure in the heart of Himalayas',
-    image: '/api/placeholder/400/300',
+    image: '/images/states/darjling.jpg',
     highlights: ['Shimla', 'Manali', 'Dharamshala']
   },
   {
     id: 4,
     title: 'Uttarakhand',
     description: 'Spiritual journeys and mountain retreats',
-    image: '/api/placeholder/400/300',
+    image: '/images/states/nagaland.jpg',
     highlights: ['Rishikesh', 'Haridwar', 'Nainital']
   },
   {
     id: 5,
     title: 'Delhi',
     description: 'Where history meets modernity',
-    image: '/api/placeholder/400/300',
+    image: '/images/states/delhi.jpg',
     highlights: ['Red Fort', 'Qutub Minar', 'India Gate']
   },
   {
     id: 6,
     title: 'Gujarat',
     description: 'Rich cultural heritage and wildlife',
-    image: '/api/placeholder/400/300',
+        image: '/images/states/Megah.jpg',
     highlights: ['Rann of Kutch', 'Gir Forest', 'Sabarmati Ashram']
   }
 ];
