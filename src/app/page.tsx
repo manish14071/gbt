@@ -1,23 +1,26 @@
-import Hero from '@/components/home/Hero'
-import SearchBox from '@/components/home/SearchBox'
-import Destinations from '@/components/home/Destinations'
-import Experiences from '@/components/home/Experiences'
-import Newsletter from '@/components/home/NewsLetter'
-import Map from '@/components/home/Map'
-import PhotoGalleryComponent from '@/components/home/PhotoGalleryComponent'
-import Testimonial from '@/components/home/Testimonial'
-import Blog from '@/components/home/Blog'
-import DetailedDestination from '@/components/home/Detailed-destination'
+import Hero from '@/components/Hero'
+
+import Destinations from '@/components/Destinations'
+import Experiences from '@/components/Experiences'
+import Newsletter from '@/components/NewsLetter'
+import Map from '@/components/Map'
+import PhotoGalleryComponent from '@/components/PhotoGalleryComponent'
+import Testimonial from '@/components/Testimonial'
+import Blog from '@/components/Blog'
+import DetailedDestination from '@/components/Detailed-destination' 
+import { indianStatesDestination } from '@/components/shared/data/indianStatesDestinations'
+
 export default function Home() {
+  const featuredDestination = indianStatesDestination[0];
   return (
     <>
       <Hero />
-      <SearchBox />
+  
       <Destinations />
       <Map />
       <Experiences />
       <PhotoGalleryComponent />
-      <DetailedDestination />
+      <DetailedDestination destination={featuredDestination}    />
       <Blog />
       <Testimonial />
       <Newsletter />
