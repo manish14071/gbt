@@ -125,6 +125,7 @@ export default function PhotoGallery() {
                     alt={image.title}
                     width={800}
                     height={600}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     style={{
                       width: '100%',
                       height: '300px',
@@ -247,6 +248,7 @@ export default function PhotoGallery() {
                     alt={selectedImage.title}
                     width={1920}
                     height={1080}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     style={{
                       maxWidth: '100%',
                       maxHeight: '80vh',

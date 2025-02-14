@@ -146,7 +146,7 @@ export default function EnhancedDestinations() {
                     image={destination.image}
                     alt={destination.title}
                     sx={{
-                      objectFit: "cover",
+                      objectFit: 'cover',
                     }}
                   />
                   <CardContent sx={{ flexGrow: 1, p: 3 }}>

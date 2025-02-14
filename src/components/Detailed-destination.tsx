@@ -143,8 +143,12 @@ const DetailedDestination: React.FC<DetailedDestinationProps> = ({
                   "/fallback-image.jpg"
                 }
                 alt={destination.name}
-                layout="fill"
-                objectFit="cover"
+              fill
+              style={{
+                objectFit: 'cover',
+                
+              }}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 priority
                 className="transition-opacity duration-500"
               />
@@ -334,8 +338,12 @@ const DetailedDestination: React.FC<DetailedDestinationProps> = ({
                       alt={destination.name}
                       width={800}
                       height={500}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       layout="responsive"
-                      objectFit="cover"
+                      style={{
+                        objectFit: 'cover',
+                       
+                      }}
                       className="rounded-lg"
                     />
                   </Box>

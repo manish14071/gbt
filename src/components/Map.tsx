@@ -131,6 +131,8 @@ export default function InteractiveMap() {
                   src={IndiaMap}
                   alt="India Map"
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  priority={true}  // Add 
                   style={{ objectFit: 'cover' }}
                 />
                 {destinations.map((dest) => (

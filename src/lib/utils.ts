@@ -12,11 +12,12 @@ export interface Destination {
   title: string
   description: string
   image: string
+  slug: string
 }
 
 export interface Experience {
   id: number
   title: string
   description: string
-  icon: JSX.Element
+  image: string
 }
