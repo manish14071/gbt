@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, useCallback } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { useRouter } from "next/navigation"
 import { ChevronLeft, ChevronRight, MapPin, ArrowRight } from "lucide-react"
@@ -33,22 +33,22 @@ export default function EnhancedDestinations() {
   const [itemsPerPage, setItemsPerPage] = useState(4)
 
   // Pause autoplay when user interacts with carousel
-  const pauseAutoPlay = () => {
+  const pauseAutoPlay = useCallback(() => {
     setAutoPlay(false)
     const timer = setTimeout(() => setAutoPlay(true), 10000)
     return () => clearTimeout(timer)
-  }
+  }, [])
 
-  // Move handleNext declaration before its usage
-  const handleNext = () => {
+  // Move handleNext declaration before its usage and memoize it
+  const handleNext = useCallback(() => {
     setCurrentIndex((prev) => (prev + itemsPerPage >= indianStatesDestination.length ? 0 : prev + 1))
     pauseAutoPlay()
-  }
+  }, [itemsPerPage, pauseAutoPlay])
 
-  const handlePrev = () => {
+  const handlePrev = useCallback(() => {
     setCurrentIndex((prev) => (prev === 0 ? Math.max(0, indianStatesDestination.length - itemsPerPage) : prev - 1))
     pauseAutoPlay()
-  }
+  }, [itemsPerPage, pauseAutoPlay])
 
   // Screen size effect
   useEffect(() => {
@@ -69,13 +69,13 @@ export default function EnhancedDestinations() {
     return () => window.removeEventListener("resize", handleResize)
   }, [])
 
-  // Auto-scroll functionality
+  // Auto-scroll functionality with handleNext in dependencies
   useEffect(() => {
     if (!autoPlay) return
 
     const timer = setInterval(handleNext, 5000)
     return () => clearInterval(timer)
-  }, [autoPlay])
+  }, [autoPlay, handleNext])
 
   const handleExplore = (slug: string) => {
     router.push(`/destinations/${slug}`)

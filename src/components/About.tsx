@@ -50,7 +50,7 @@ export default function AboutSection() {
             className="max-w-3xl"
           >
             <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-amber-200 to-amber-100 bg-clip-text text-transparent">
-              Discover India's Magic
+              Discover India&apos;s Magic
             </h1>
             <p className="text-2xl text-white/90 leading-relaxed">
               Since 2010, we&apos;ve been crafting unforgettable travel experiences across India, 
