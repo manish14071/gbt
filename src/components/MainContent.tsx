@@ -27,8 +27,8 @@ export default function MainContent({ initialRoute }: MainContentProps) {
 
   // Set the initial route only once when component mounts
   useEffect(() => {
-    setInitialRoute(initialRoute)
-  }, []) // Remove dependencies to prevent re-initialization
+    setInitialRoute(initialRoute);
+  }, [initialRoute, setInitialRoute]);
 
   // Render content based on current route
   const renderContent = () => {

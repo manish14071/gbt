@@ -30,10 +30,27 @@ export default function EnhancedDestinations() {
   const [autoPlay, setAutoPlay] = useState(true)
   const router = useRouter()
   const carouselRef = useRef<HTMLDivElement>(null)
-
-  // Get items per page based on screen size
   const [itemsPerPage, setItemsPerPage] = useState(4)
 
+  // Pause autoplay when user interacts with carousel
+  const pauseAutoPlay = () => {
+    setAutoPlay(false)
+    const timer = setTimeout(() => setAutoPlay(true), 10000)
+    return () => clearTimeout(timer)
+  }
+
+  // Move handleNext declaration before its usage
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev + itemsPerPage >= indianStatesDestination.length ? 0 : prev + 1))
+    pauseAutoPlay()
+  }
+
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev === 0 ? Math.max(0, indianStatesDestination.length - itemsPerPage) : prev - 1))
+    pauseAutoPlay()
+  }
+
+  // Screen size effect
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 640) {
@@ -56,29 +73,9 @@ export default function EnhancedDestinations() {
   useEffect(() => {
     if (!autoPlay) return
 
-    const timer = setInterval(() => {
-      handleNext()
-    }, 5000)
-
+    const timer = setInterval(handleNext, 5000)
     return () => clearInterval(timer)
-  }, [currentIndex, autoPlay, itemsPerPage])
-
-  // Pause autoplay when user interacts with carousel
-  const pauseAutoPlay = () => {
-    setAutoPlay(false)
-    const timer = setTimeout(() => setAutoPlay(true), 10000)
-    return () => clearTimeout(timer)
-  }
-
-  const handleNext = () => {
-    setCurrentIndex((prev) => (prev + itemsPerPage >= indianStatesDestination.length ? 0 : prev + 1))
-    pauseAutoPlay()
-  }
-
-  const handlePrev = () => {
-    setCurrentIndex((prev) => (prev === 0 ? Math.max(0, indianStatesDestination.length - itemsPerPage) : prev - 1))
-    pauseAutoPlay()
-  }
+  }, [autoPlay])
 
   const handleExplore = (slug: string) => {
     router.push(`/destinations/${slug}`)

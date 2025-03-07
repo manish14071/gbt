@@ -53,7 +53,7 @@ export default function AboutSection() {
               Discover India's Magic
             </h1>
             <p className="text-2xl text-white/90 leading-relaxed">
-              Since 2010, we've been crafting unforgettable travel experiences across India, 
+              Since 2010, we&apos;ve been crafting unforgettable travel experiences across India, 
               combining luxury with authenticity to create memories that last a lifetime.
             </p>
           </motion.div>

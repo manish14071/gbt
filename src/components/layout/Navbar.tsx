@@ -1,6 +1,7 @@
 "use client"
 
 import type React from "react"
+import Link from 'next/link'
 
 import { useState, useEffect } from "react"
 import { Menu, X } from "lucide-react"
@@ -55,9 +56,13 @@ export default function Navbar() {
     >
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center">
-          <a href="/" className="flex items-center" onClick={(e) => handleNavigation("/", e)}>
+          <Link 
+            href="/" 
+            className="flex items-center" 
+            onClick={(e) => handleNavigation("/", e)}
+          >
             <GlobalBordersTravelsLogo variant={isScrolled ? "default" : "light"} size="md" />
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">

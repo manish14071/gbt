@@ -83,7 +83,7 @@ export default function ContactSection() {
             </h1>
             <p className="text-xl text-white/90">
               Have questions about our tours or need help planning your trip?
-              We're here to assist you every step of the way.
+              We&apos;re here to assist you every step of the way.
             </p>
           </motion.div>
         </div>
