@@ -1,138 +1,146 @@
 "use client"
-import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
-import { 
-  Box, 
-  Typography, 
-  IconButton, 
-  useScrollTrigger, 
-  Slide, 
-  Container 
-} from '@mui/material';
-import NavLink from '../shared/NavLink'; // Ensure this path is correct
-import { motion } from 'framer-motion';
+
+import type React from "react"
+
+import { useState, useEffect } from "react"
+import { Menu, X } from "lucide-react"
+import { motion, AnimatePresence } from "framer-motion"
+import GlobalBordersTravelsLogo from "../logo"
+import { useRoute } from "../context/route-context"
+import { cn } from "@/lib/utils"
+
+// Define navigation items with their paths
+const navigationItems = [
+  { name: "Home", path: "/" },
+  { name: "Destinations", path: "/destinations" },
+  { name: "Experiences", path: "/experiences" },
+  { name: "About", path: "/about" },
+  { name: "Contact", path: "/contact" },
+]
 
 export default function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  
-  const trigger = useScrollTrigger({
-    threshold: 50
-  });
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+  const { currentRoute, navigateTo } = useRoute()
 
   useEffect(() => {
-    setIsScrolled(trigger);
-  }, [trigger]);
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setIsMenuOpen(false)
+  }, [currentRoute])
+
+  const handleNavigation = (path: string, e: React.MouseEvent) => {
+    e.preventDefault()
+    console.log('Navigating to:', path)
+    navigateTo(path)
+  }
 
   return (
-    <Slide direction="down" in={!trigger} appear={false}>
-      <Box 
-        component="nav" 
-        sx={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 1100,
-          backdropFilter: isScrolled ? 'blur(8px)' : 'none',
-          backgroundColor: isScrolled ? 'rgba(26, 35, 126, 0.9)' : 'transparent',
-          transition: 'all 0.3s ease',
-          py: isScrolled ? 1 : 2,
-          boxShadow: isScrolled ? 1 : 'none'
-        }}
-      >
-        <Container maxWidth="lg">
-          <Box sx={{ 
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center'
-          }}>
-            <Typography
-              variant="h5"
-              component="a"
-              href="/"
-              sx={{
-                fontWeight: 800,
-                color: 'white',
-                textDecoration: 'none',
-                '&:hover': { opacity: 0.9 }
-              }}
-            >
-              Global Travel
-            </Typography>
+    <motion.nav
+      className={cn(
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4",
+        isScrolled ? "bg-primary/90 backdrop-blur-md py-2 shadow-md" : "bg-transparent",
+      )}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      <div className="container mx-auto px-4">
+        <div className="flex justify-between items-center">
+          <a href="/" className="flex items-center" onClick={(e) => handleNavigation("/", e)}>
+            <GlobalBordersTravelsLogo variant={isScrolled ? "default" : "light"} size="md" />
+          </a>
 
-            <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 4 }}>
-              {['Destinations', 'Experiences', 'About', 'Contact'].map((item) => (
-                <NavLink 
-                  key={item} 
-                  href="#" 
-                  sx={{ 
-                    color: 'white',
-                    position: 'relative',
-                    '&::after': {
-                      content: '""',
-                      position: 'absolute',
-                      bottom: -4,
-                      left: 0,
-                      width: '0%',
-                      height: '2px',
-                      background: '#ff9800',
-                      transition: 'width 0.3s ease'
-                    },
-                    '&:hover::after': {
-                      width: '100%'
-                    }
-                  }}
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-8">
+            {navigationItems.map((item) => {
+              const isActive = currentRoute === item.path || (item.path !== "/" && currentRoute?.startsWith(item.path))
+
+              return (
+                <a
+                  key={item.name}
+                  href={item.path}
+                  className={cn("text-white relative group transition-colors", isActive && "text-amber-400")}
+                  onClick={(e) => handleNavigation(item.path, e)}
                 >
-                  {item}
-                </NavLink>
-              ))}
-            </Box>
+                  <span className="font-medium">{item.name}</span>
+                  <span
+                    className={cn(
+                      "absolute -bottom-1 left-0 h-0.5 bg-amber-500 transition-all duration-300",
+                      isActive ? "w-full" : "w-0 group-hover:w-full",
+                    )}
+                  ></span>
+                </a>
+              )
+            })}
+          </div>
 
-            <IconButton
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              sx={{ 
-                display: { md: 'none' },
-                color: 'white'
-              }}
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="md:hidden text-white"
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          >
+            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </div>
+
+        {/* Mobile Menu - Updated Animation */}
+        <AnimatePresence mode="sync">
+          {isMenuOpen && (
+            <motion.div
+              className="md:hidden absolute top-full left-0 right-0 bg-primary/95 backdrop-blur-md"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
             >
-              {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
-            </IconButton>
-          </Box>
-
-          {/* Mobile Menu */}
-          <Box sx={{
-            display: { xs: isMenuOpen ? 'flex' : 'none', md: 'none' },
-            flexDirection: 'column',
-            position: 'absolute',
-            top: '100%',
-            left: 0,
-            right: 0,
-            backgroundColor: 'rgba(26, 35, 126, 0.95)',
-            p: 2,
-            gap: 2,
-            backdropFilter: 'blur(8px)'
-          }}>
-            {['Destinations', 'Experiences', 'About', 'Contact'].map((item) => (
-              <NavLink 
-                key={item} 
-                href="#"
-                sx={{
-                  color: 'white',
-                  py: 1,
-                  px: 2,
-                  borderRadius: 1,
-                  '&:hover': {
-                    backgroundColor: 'rgba(255,255,255,0.1)'
-                  }
-                }}
+              <motion.div 
+                className="flex flex-col p-4 space-y-4"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ delay: 0.1 }}
               >
-                {item}
-              </NavLink>
-            ))}
-          </Box>
-        </Container>
-      </Box>
-    </Slide>
-  );
+                {navigationItems.map((item, index) => {
+                  const isActive =
+                    currentRoute === item.path || (item.path !== "/" && currentRoute?.startsWith(item.path))
+
+                  return (
+                    <motion.a
+                      key={item.name}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -20 }}
+                      transition={{ delay: index * 0.1 }}
+                      href={item.path}
+                      className={cn(
+                        "py-2 px-4 rounded transition-colors",
+                        isActive ? "bg-white/20 text-amber-400" : "text-white hover:bg-white/10",
+                      )}
+                      onClick={(e) => {
+                        handleNavigation(item.path, e)
+                        setIsMenuOpen(false)
+                      }}
+                    >
+                      {item.name}
+                    </motion.a>
+                  )
+                })}
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </motion.nav>
+  )
 }
+
