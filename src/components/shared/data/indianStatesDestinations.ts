@@ -125,12 +125,10 @@ interface Destination {
         }
       ],
       images: [
-        "/images/states/goa.jpg",
-        "/images/states/beach.avif",
-        "/images/states/goa.jpg",
-        "/images/states/goa.jpg",
-        "/images/states/goa.jpg",
-        "/images/states/goa.jpg"
+        "/images/states/jammu & kashmir/j&k1.jpg",
+        "/images/states/jammu & kashmir/j&k2.jpg",
+        "/images/states/jammu & kashmir/j&k3.jpg",
+        
       ]
   },
 
@@ -177,12 +175,10 @@ interface Destination {
       }
     ],
     images: [
-      "/images/states/goa.jpg",
-      "/images/states/beach.avif",
-      "/images/states/goa.jpg",
-      "/images/states/goa.jpg",
-      "/images/states/goa.jpg",
-      "/images/states/goa.jpg"
+      "/images/states/himachal/h1.jpg",
+      "/images/states/himachal/h2.jpg",
+      "/images/states/himachal/h3.jpg",
+      
     ]
 },
 
@@ -229,12 +225,8 @@ interface Destination {
     }
   ],
   images: [
-    "/images/states/goa.jpg",
-    "/images/states/beach.avif",
-    "/images/states/goa.jpg",
-    "/images/states/goa.jpg",
-    "/images/states/goa.jpg",
-    "/images/states/goa.jpg"
+    "/images/states/uttrakhand/uk1.jpg",
+    
   ]
 },
 
@@ -281,12 +273,10 @@ interface Destination {
     }
   ],
   images: [
-    "/images/states/goa.jpg",
-    "/images/states/beach.avif",
-    "/images/states/goa.jpg",
-    "/images/states/goa.jpg",
-    "/images/states/goa.jpg",
-    "/images/states/goa.jpg"
+    "/images/states/uttarpardesh/up1.jpg",
+    "/images/states/uttarpardesh/up2.jpg",
+    "/images/states/uttarpardesh/up3.jpg",
+    
   ]
 },
 
@@ -332,12 +322,9 @@ interface Destination {
     }
   ],
   images: [
-    "/images/states/goa.jpg",
-    "/images/states/beach.avif",
-    "/images/states/goa.jpg",
-    "/images/states/goa.jpg",
-    "/images/states/goa.jpg",
-    "/images/states/goa.jpg"
+    "/images/states/delhi/dl1.jpg",
+    "/images/states/delhi/dl2.jpg",
+    
   ]
 },
 
@@ -383,12 +370,8 @@ interface Destination {
     }
   ],
   images: [
-    "/images/states/goa.jpg",
-    "/images/states/beach.avif",
-    "/images/states/goa.jpg",
-    "/images/states/goa.jpg",
-    "/images/states/goa.jpg",
-    "/images/states/goa.jpg"
+    "/images/states/gujrat/gj1.jpg",
+   
   ]
 },
 
@@ -434,12 +417,9 @@ interface Destination {
     }
   ],
   images: [
-    "/images/states/goa.jpg",
-    "/images/states/beach.avif",
-    "/images/states/goa.jpg",
-    "/images/states/goa.jpg",
-    "/images/states/goa.jpg",
-    "/images/states/goa.jpg"
+    "/images/states/Manipur/m1.jpg",
+    "/images/states/Manipur/m2.jpg",
+    
   ]
 },
 
@@ -485,12 +465,10 @@ interface Destination {
     }
   ],
   images: [
-    "/images/states/goa.jpg",
-    "/images/states/beach.avif",
-    "/images/states/goa.jpg",
-    "/images/states/goa.jpg",
-    "/images/states/goa.jpg",
-    "/images/states/goa.jpg"
+    "/images/states/meghalaya/mg1.jpg", 
+    "/images/states/meghalaya/mg2.jpg",
+    "/images/states/meghalaya/mg3.jpg",
+    
   ]
 },
 
@@ -537,12 +515,9 @@ interface Destination {
     }
   ],
   images: [
-    "/images/states/goa.jpg",
-    "/images/states/beach.avif",
-    "/images/states/goa.jpg",
-    "/images/states/goa.jpg",
-    "/images/states/goa.jpg",
-    "/images/states/goa.jpg"
+    "/images/states/rajashtan/rj1.jpg",
+    "/images/states/rajashtan/rj2.jpg",
+    
   ]
 },
 
@@ -588,12 +563,8 @@ interface Destination {
     }
   ],
   images: [
-    "/images/states/goa.jpg",
-    "/images/states/beach.avif",
-    "/images/states/goa.jpg",
-    "/images/states/goa.jpg",
-    "/images/states/goa.jpg",
-    "/images/states/goa.jpg"
+    "/images/states/nagaland/ng1.jpg",
+    
   ]
 },
 
